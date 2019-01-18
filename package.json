@@ -1,0 +1,30 @@
+{
+  "name": "wdio-demo",
+  "version": "1.0.0",
+  "description": "Webdriver.io demo",
+  "main": "index.js",
+  "scripts": {
+    "test": "wdio"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/carledriss/wdio-demo.git"
+  },
+  "author": "Carledriss Zeiss",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/carledriss/wdio-demo/issues"
+  },
+  "homepage": "https://github.com/carledriss/wdio-demo#readme",
+  "devDependencies": {
+    "chai": "^4.2.0",
+    "chai-webdriverio": "^0.4.3",
+    "wdio-mocha-framework": "^0.6.4",
+    "wdio-selenium-standalone-service": "0.0.12",
+    "wdio-spec-reporter": "^0.1.5",
+    "webdriverio": "^4.14.2"
+  },
+  "dependencies": {
+    "wdio": "^3.0.0"
+  }
+}

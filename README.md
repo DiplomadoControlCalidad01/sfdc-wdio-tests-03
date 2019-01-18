@@ -1,1 +1,1 @@
-# sfdc-wdio-tests-03
+# wdio-demo
