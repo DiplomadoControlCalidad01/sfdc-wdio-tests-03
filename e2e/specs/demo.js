@@ -1,32 +1,22 @@
 var assert = require('assert');
 const credentials = require('../../environment').credentials;
 
+const commonActions = require('../core/CommonActions');
+const login = require('../pages/Login.po');
+const navigation = require('../pages/Navigation.po');
+const ruleCreator = require('../pages/RuleCreator.po');
+
 describe('Login to salesforce', () => {
     it('Login', () => {
         browser.url('https://login.salesforce.com');
 
         browser.waitForVisible('#theloginform', 30000);
 
-        browser.element('#username').setValue(credentials.sysadmin.username);
-        browser.element('#password').setValue(credentials.sysadmin.password);
-        browser.element('#Login').click();
-
-        browser.waitForVisible('#userNav', 30000);
-        browser.element('#userNav').click();
-
-        // menu button
-
-        browser.waitForVisible('.menuButtonMenuLink*=Setup', 30000);
-        browser.element('.menuButtonMenuLink*=Setup').click();
-
-        // click create image
-        browser.waitForVisible('img[title="Expand - Create - Level 1"]', 30000);
-        browser.element('img[title="Expand - Create - Level 1"]').click();
-
+        login.loginAs(credentials.sysadmin.username, credentials.sysadmin.password);
         
-        browser.waitForVisible('#CustomObjects_font', 30000);
-        browser.element('#CustomObjects_font').click();
+        navigation.goToObject('Prueba');
 
+        ruleCreator.setupDefaultFields('Nombre de la Prueba', true, 'Descripción de Prueba', 'Telefono es requerido si Casilla esta marcada.', 'field', 'Telefono');
         browser.pause(30000);
     });
 });
