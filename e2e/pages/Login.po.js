@@ -1,4 +1,5 @@
 const commonActions = require('../core/CommonActions');
+const {url} = require('../../environment');
 
 class Login {
     setUsername(value) {
@@ -12,6 +13,10 @@ class Login {
     }
 
     static loginAs(username, password) {
+        browser.url(url);
+        
+        commonActions.waitForVisible('#theloginform');
+        
         let login = new Login();
         login.setUsername(username);
         login.setPassword(password);

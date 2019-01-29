@@ -1,3 +1,5 @@
+const {explicit} = require('../../environment').timeout;
+
 class CommonActions {
     static setValue(locator, value) {
         browser.waitForVisible(locator, 30000);
@@ -20,6 +22,15 @@ class CommonActions {
             }
         });
 
+    }
+    
+    static waitForVisible(locator) {
+        browser.waitForVisible(locator, explicit);
+    }
+
+    static getText(locator) {
+        browser.waitForVisible(locator, explicit);
+        return browser.getText(locator);
     }
 }
 

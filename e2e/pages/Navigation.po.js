@@ -8,6 +8,11 @@ class Navigation {
         commonActions.click('=' + objectName);
     }
 
+    static goToCreateForm() {
+        commonActions.click('a[title="Ficha Pruebas"]');
+        commonActions.click('input[title="Nuevo"]');
+    }
+
 }
 
 module.exports = Navigation;
