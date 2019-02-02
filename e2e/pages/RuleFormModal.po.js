@@ -6,7 +6,6 @@ class RuleForm extends Form {
 
     constructor() {
         super();
-        commonActions.click('[title="Nuevo Reglas de validación"]');
         this.formulaField = '#ValidationFormula';
         this.nameField = '#ValidationName';
         this.activeField = '#Active';
@@ -18,7 +17,7 @@ class RuleForm extends Form {
     }
    
     static setActiveFlag(fieldKey, value) {
-        if (value === true) {
+        if (value) {
             commonActions.click(fieldKey);
         }
     }
@@ -29,10 +28,6 @@ class RuleForm extends Form {
         } else if (errorLocation == 'top of the page') {
             commonActions.click(topError);
         }
-    }
-
-    deleteRule (ruleName) {
-        commonActions.click('[title="Eliminar - Registro 1 - ' + ruleName + '"]');
     }
 
     fillForm(ruleJSON) {

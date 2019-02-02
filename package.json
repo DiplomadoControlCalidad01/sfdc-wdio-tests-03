@@ -26,6 +26,10 @@
   },
   "dependencies": {
     "docker-compose": "^0.10.0",
+    "jest": "^24.0.0",
+    "jsforce": "^1.9.1",
+    "nforce": "^1.10.2",
+    "nforce-tooling": "0.0.5",
     "wdio": "^3.0.0"
   }
 }

@@ -2,10 +2,12 @@ const expect = require('chai').expect;
 const credentials = require('../../environment').credentials;
 
 const commonActions = require('../core/CommonActions');
+const ApiUtilities = require('../core/APIUtilities');
+
 const login = require('../pages/Login.po');
 const navigation = require('../pages/Navigation.po');
 const RuleForm = require('../pages/RuleFormModal.po');
-const objectCreator = require('../pages/ObjectCreator.po');
+const objectHandler = require('../pages/ObjectHandler.po');
 const RuleView = require('../pages/RuleView.po');
 
 describe('Login to salesforce', () => {
@@ -17,6 +19,7 @@ describe('Login to salesforce', () => {
         login.loginAs(credentials.sysadmin.username, credentials.sysadmin.password);
         
         navigation.goToObject('Prueba');
+        navigation.goToCreateRules();
 
         let ruleForm = new RuleForm();
         let rule = {
@@ -31,19 +34,21 @@ describe('Login to salesforce', () => {
         ruleForm.fillForm(rule);
         ruleForm.clickSaveButton();
 
-        navigation.goToCreateForm();
-
-        objectCreator.createObject('Test 01');
-
-        
         let ruleView = new RuleView();
-        const error = ruleView.getErrorMessage();
 
-        expect(ruleView.getErrorMessage()).to.equal('Error: ' + rule.ErrorMessage);
-
-        navigation.goToObject('Prueba');
-
-        ruleForm.deleteRule(rule.Name);
+        expect(rule.Name).to.equal(ruleView.getFieldValue('Name'));
+        console.log('Success for Name.');
+        expect(rule.Description).to.equal(ruleView.getFieldValue('Description'));
+        console.log('Success for Description.');
+        expect(rule.Formula).to.equal(ruleView.getFieldValue('Formula'));
+        console.log('Success for Formula.');
+        expect(rule.ErrorMessage).to.equal(ruleView.getFieldValue('ErrorMessage'));
+        console.log('Success for ErrorMessage.');
+        expect(rule.ErrorLocationField).to.equal(ruleView.getFieldValue('ErrorLocationField'));
+        console.log('Success for ErrorLocationField.');
+        
+        let api = new ApiUtilities();
+        api.deleteValidationRule('Prueba__c.' + rule.Name);
 
         browser.pause(30000);
     });
