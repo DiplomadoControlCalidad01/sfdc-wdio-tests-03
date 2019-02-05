@@ -11,8 +11,8 @@ const RuleForm = require('../pages/RuleFormModal.po');
 const objectHandler = require('../pages/ObjectHandler.po');
 const RuleView = require('../pages/RuleView.po');
 
-describe('Login to salesforce', () => {
-    it('Login', () => {
+describe('Rule removing', () => {
+    it('Removing', () => {
         
         //Lets create first our condition.
         let api = new ApiUtilities();
@@ -26,10 +26,6 @@ describe('Login to salesforce', () => {
 
         api.createValidationRule(ruleMetadata);
 
-        browser.url('https://login.salesforce.com');
-
-        browser.waitForVisible('#theloginform', 30000);
-
         login.loginAs(credentials.sysadmin.username, credentials.sysadmin.password);
         
         navigation.goToObject('Prueba');
@@ -38,7 +34,5 @@ describe('Login to salesforce', () => {
 
         //Checking default message when there are no rules created.
         expect(commonActions.getText('//div[@id="ValidationFormulaList_body"]/descendant::th')).to.equal('No se han definido reglas de validación.');
-
-        browser.pause(30000);
     });
 });

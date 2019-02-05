@@ -11,8 +11,8 @@ const RuleForm = require('../pages/RuleFormModal.po');
 const objectHandler = require('../pages/ObjectHandler.po');
 const RuleView = require('../pages/RuleView.po');
 
-describe('Login to salesforce', () => {
-    it('Login', () => {
+describe('Rule Edition', () => {
+    it('Edition', () => {
         
         //Lets create first our condition.
         let api = new ApiUtilities();
@@ -25,10 +25,6 @@ describe('Login to salesforce', () => {
         };
 
         api.createValidationRule(ruleMetadata);
-
-        browser.url('https://login.salesforce.com');
-
-        browser.waitForVisible('#theloginform', 30000);
 
         login.loginAs(credentials.sysadmin.username, credentials.sysadmin.password);
         
@@ -66,7 +62,5 @@ describe('Login to salesforce', () => {
         console.log('Success for ErrorLocationField.');
                
         api.deleteValidationRule('Prueba__c.' + rule.Name);
-
-        browser.pause(30000);
     });
 });

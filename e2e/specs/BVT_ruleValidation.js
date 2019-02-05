@@ -10,10 +10,9 @@ const RuleForm = require('../pages/RuleFormModal.po');
 const objectHandler = require('../pages/ObjectHandler.po');
 const RuleView = require('../pages/RuleView.po');
 
-describe('Login to salesforce', () => {
-    it('Login', () => {
-        browser.url('https://login.salesforce.com');
-
+describe('Rule Validation', () => {
+    it('Validation', () => {
+        
         //Lets create first our condition.
         let api = new ApiUtilities();
         let ruleMetadata = {
@@ -26,8 +25,6 @@ describe('Login to salesforce', () => {
         };
  
         api.createValidationRule(ruleMetadata);
-
-        browser.waitForVisible('#theloginform', 30000);
 
         login.loginAs(credentials.sysadmin.username, credentials.sysadmin.password);
         
@@ -48,6 +45,5 @@ describe('Login to salesforce', () => {
         expect(commonActions.getText('#Name_ileinner')).to.equal('Test 01');
 
         objectHandler.deleteObject();
-        browser.pause(30000);
     });
 });

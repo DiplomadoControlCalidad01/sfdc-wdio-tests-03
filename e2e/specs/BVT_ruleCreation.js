@@ -10,12 +10,9 @@ const RuleForm = require('../pages/RuleFormModal.po');
 const objectHandler = require('../pages/ObjectHandler.po');
 const RuleView = require('../pages/RuleView.po');
 
-describe('Login to salesforce', () => {
-    it('Login', () => {
-        browser.url('https://login.salesforce.com');
-
-        browser.waitForVisible('#theloginform', 30000);
-
+describe('Rule creation', () => {
+    it('Creation', () => {
+        
         login.loginAs(credentials.sysadmin.username, credentials.sysadmin.password);
         
         navigation.goToObject('Prueba');
@@ -49,7 +46,5 @@ describe('Login to salesforce', () => {
         
         let api = new ApiUtilities();
         api.deleteValidationRule('Prueba__c.' + rule.Name);
-
-        browser.pause(30000);
     });
 });

@@ -14,7 +14,6 @@ class Login {
 
     static loginAs(username, password) {
         browser.url(url);
-        
         commonActions.waitForVisible('#theloginform');
         
         let login = new Login();

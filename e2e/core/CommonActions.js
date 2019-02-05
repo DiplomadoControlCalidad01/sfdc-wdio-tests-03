@@ -17,7 +17,7 @@ class CommonActions {
             let text = option.getAttribute("text");
             let index = option.getAttribute("index");
             index++;
-            if (text == toBeSelected) {
+            if (text === toBeSelected) {
                 CommonActions.click(locator + '>option:nth-child(' + index + ')');
             }
         });
